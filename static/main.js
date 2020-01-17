@@ -13,7 +13,7 @@ const app = new Vue({
                 const message = {
                     name: this.name,
                     text: this.text
-                }
+                };
                 this.socket.emit('msgToServer', message);
                 this.text = ''
             }
@@ -26,7 +26,7 @@ const app = new Vue({
         }
     },
     created() {
-        this.socket = io('http://localhost:3000');
+        this.socket = io(`http://localhost:${process.env.PORT || 3000}`);
         this.socket.on('msgToClient', (message) => {
             this.receivedMessage(message)
         })
